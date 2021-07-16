@@ -60,7 +60,7 @@ def order_key(txt_dic):
     return sorted(txt_dic.items(),  key=lambda d: d[1], reverse=True)
 
 def test_main():
-    file_name = 'main2.txt'
+    file_name = 'main.txt'
     result = {}
     with  open('record/{}'.format(file_name),'r') as key_file:
         buffer=50

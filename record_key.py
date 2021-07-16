@@ -24,6 +24,7 @@ class record_key:
             fp.write(self.get_key_name())
             fp.write(';')
 
+    
 if __name__ == '__main__':
     import keyboard 
     def printcall(e):
