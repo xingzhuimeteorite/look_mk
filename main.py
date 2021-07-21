@@ -3,13 +3,15 @@ import keyboard
 import record_key
 from multiprocessing import  Process
 import data.data_save as dd
- 
+import time 
 def display_file_count(file_c):
     dw.display(file_c)
 
 
 def write_file_count(file_c):
     def printcall(e):
+        # 10ms 延时 按键消抖
+        time.sleep(0.01)
         file_c.add_count(1)
     keyboard.on_press(printcall)
     keyboard.wait()

@@ -28,7 +28,10 @@ class record_key:
 if __name__ == '__main__':
     import keyboard 
     def printcall(e):
+        # 10ms延时 软件消抖
+        time.sleep(0.01)
         a = record_key(keyboard._pressed_events)
+        print(a.get_key_name())
         a.write_txt()
     keyboard.on_press(printcall)
     keyboard.wait() 
