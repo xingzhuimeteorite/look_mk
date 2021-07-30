@@ -18,21 +18,33 @@ class record_key:
         name_begin_position = re.search(name_head,full_name).end()
         name_end_position = re.search(name_end,full_name).start()
         return full_name[name_begin_position:name_end_position]
-    
+
+
     def write_txt(self):
         with open('record/{}.txt'.format(time.strftime('%Y-%m-%d')),'a') as fp:
             fp.write(self.get_key_name())
             fp.write(';')
 
+
+class record_key_event(record_key):
+
+    def __init__(self,event):
+        self.event = event
     
+    def get_key_name(self):
+        return self.event.name
+
+
+
 if __name__ == '__main__':
     import keyboard 
-    def printcall(e):
+    def printcall(event):
         # 10ms延时 软件消抖
-        time.sleep(0.01)
-        a = record_key(keyboard._pressed_events)
-        print(a.get_key_name())
-        a.write_txt()
-    keyboard.on_press(printcall)
+        if event.event_type == "down" :
+            time.sleep(0.01)
+            a = record_key_event(event)
+            print(a.get_key_name())
+            a.write_txt()
+    keyboard.hook(printcall)
     keyboard.wait() 
     

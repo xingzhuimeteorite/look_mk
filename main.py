@@ -9,10 +9,11 @@ def display_file_count(file_c):
 
 
 def write_file_count(file_c):
-    def printcall(e):
+    def printcall(event):
         # 10ms 延时 按键消抖
         time.sleep(0.01)
-        file_c.add_count(1)
+        if event.event_type == "down" :
+            file_c.add_count(1)
     keyboard.on_press(printcall)
     keyboard.wait()
 
